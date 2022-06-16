@@ -1,0 +1,7 @@
+{
+  "name": "com.sas.scriptabletypes",
+  "version": "0.0.1",
+  "displayName": "SAS Scriptable DataTypes",
+  "unity": "2019.1",
+  "hideInEditor": false
+}

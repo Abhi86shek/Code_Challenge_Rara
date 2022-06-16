@@ -1,0 +1,456 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9129332173638067377
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Walk->To->Idle
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: 524749802318904998}
+  m_TargetState: {fileID: -2905923744005620821}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: NormalizedMoveInput
+    m_Mode: 4
+    m_Type: 1
+    m_FloatValue: 0.1
+    m_CustomTrigger: 
+--- !u!114 &-8173297704611150836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: JumpAscending
+  m_EditorClassIdentifier: 
+  m_Position: {x: 776, y: 239, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: Rara.FSMCharacterController.AerialMovement, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.UpwardMovement, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.HeadHitDetector, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: HeadHIt
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.ApplyMovementVector, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.ApplyRotation, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: TurnSmoothTime
+    whenToExecute: 4
+  m_Transitions:
+  - {fileID: 7270883719440320771}
+  - {fileID: -5457405157129958740}
+  - {fileID: 2640951669031519418}
+--- !u!114 &-5457405157129958740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: JumpAscending->To->JumpDescending
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -8173297704611150836}
+  m_TargetState: {fileID: 1725729553098002965}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: HasHitHead
+    m_Mode: 1
+    m_Type: 9
+    m_FloatValue: 0
+    m_CustomTrigger: 
+--- !u!114 &-4293093915684933575
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed43b1bea1e69d49a73ea66f6732994, type: 3}
+  m_Name: Base StateMachine
+  m_EditorClassIdentifier: 
+  m_Position: {x: 300, y: 50, z: 0}
+  m_PositionAsUpNode: {x: 700, y: 100, z: 0}
+  m_AnyStatePosition: {x: 300, y: 50, z: 0}
+  m_ParentStateMachine: {fileID: 0}
+  m_ChildStateMachines: []
+  m_StateModels:
+  - {fileID: -2905923744005620821}
+  - {fileID: 524749802318904998}
+  - {fileID: -8173297704611150836}
+  - {fileID: 1725729553098002965}
+--- !u!114 &-3044604339222193082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Any State
+  m_EditorClassIdentifier: 
+  m_Position: {x: 300, y: 50, z: 0}
+  m_Tag: 
+  m_StateActions: []
+  m_Transitions: []
+--- !u!114 &-2905923744005620821
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Idle
+  m_EditorClassIdentifier: 
+  m_Position: {x: 502, y: 356, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: Rara.FSMCharacterController.StopMovement, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 1
+  - fullName: Rara.FSMCharacterController.VerticalPull, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: VerticalPull
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.ApplyMovementVector, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.GroundDetector, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  m_Transitions:
+  - {fileID: 7200885666480412056}
+  - {fileID: 5043586770189933488}
+  - {fileID: 6541193896382284492}
+--- !u!114 &-1567584605647541001
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Walk->To->JumpAscending
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: 524749802318904998}
+  m_TargetState: {fileID: -8173297704611150836}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: IsGrounded
+    m_Mode: 1
+    m_Type: 4
+    m_FloatValue: 0
+    m_CustomTrigger: 
+  - m_Name: Jump
+    m_Mode: 1
+    m_Type: 4
+    m_FloatValue: 0
+    m_CustomTrigger: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1523b8ee4bacc64cb19ba28d47e9317, type: 3}
+  m_Name: Player State Machine Controller
+  m_EditorClassIdentifier: 
+  m_BaseStateMachineModel: {fileID: -4293093915684933575}
+  _parameters:
+  - m_Name: Jump
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+  - m_Name: IsGrounded
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+  - m_Name: NormalizedMoveInput
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+  - m_Name: HasHitHead
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+  m_DefaultStateModel: {fileID: -2905923744005620821}
+  m_AnyStateModel: {fileID: -3044604339222193082}
+--- !u!114 &524749802318904998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Walk
+  m_EditorClassIdentifier: 
+  m_Position: {x: 499, y: 235, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: Rara.FSMCharacterController.HorizontalMovement, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: WalkSpeed
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.VerticalPull, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: VerticalPull
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.ApplyMovementVector, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.ApplyRotation, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: TurnSmoothTime
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.GroundDetector, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  m_Transitions:
+  - {fileID: -9129332173638067377}
+  - {fileID: -1567584605647541001}
+--- !u!114 &541864679192650857
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: JumpDescending->To->Idle
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: 1725729553098002965}
+  m_TargetState: {fileID: -2905923744005620821}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: IsGrounded
+    m_Mode: 1
+    m_Type: 4
+    m_FloatValue: 0
+    m_CustomTrigger: 
+--- !u!114 &1725729553098002965
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: JumpDescending
+  m_EditorClassIdentifier: 
+  m_Position: {x: 778, y: 356, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: Rara.FSMCharacterController.AerialMovement, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  - fullName: SAS.StateMachineGraph.Utilities.ApplyActorParameter, AssemblyStateMachine,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: Descending
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.DownwardMovement, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.ApplyMovementVector, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.GroundDetector, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 4
+  m_Transitions:
+  - {fileID: 541864679192650857}
+--- !u!114 &2640951669031519418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: JumpAscending->To->JumpDescending
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -8173297704611150836}
+  m_TargetState: {fileID: 1725729553098002965}
+  m_HasExitTime: 1
+  m_ExitTime: 0.4
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions: []
+--- !u!114 &5043586770189933488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Idle->To->JumpAscending
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -2905923744005620821}
+  m_TargetState: {fileID: -8173297704611150836}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: IsGrounded
+    m_Mode: 1
+    m_Type: 4
+    m_FloatValue: 0
+    m_CustomTrigger: 
+  - m_Name: Jump
+    m_Mode: 1
+    m_Type: 4
+    m_FloatValue: 0
+    m_CustomTrigger: 
+--- !u!114 &6541193896382284492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Idle->To->JumpDescending
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -2905923744005620821}
+  m_TargetState: {fileID: 1725729553098002965}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: IsGrounded
+    m_Mode: 2
+    m_Type: 4
+    m_FloatValue: 0
+    m_CustomTrigger: 
+--- !u!114 &7200885666480412056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Idle->To->Walk
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -2905923744005620821}
+  m_TargetState: {fileID: 524749802318904998}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: NormalizedMoveInput
+    m_Mode: 3
+    m_Type: 1
+    m_FloatValue: 0.1
+    m_CustomTrigger: 
+--- !u!114 &7270883719440320771
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: JumpAscending->To->JumpDescending
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -8173297704611150836}
+  m_TargetState: {fileID: 1725729553098002965}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: Jump
+    m_Mode: 2
+    m_Type: 4
+    m_FloatValue: 0
+    m_CustomTrigger: 
