@@ -18,3 +18,7 @@ MonoBehaviour:
   - TurnSmoothTime
   - Descending
   - HeadHIt
+  - Patrol
+  - Ground
+  - Chase
+  - Player

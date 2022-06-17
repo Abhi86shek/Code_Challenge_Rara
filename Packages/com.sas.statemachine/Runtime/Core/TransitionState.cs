@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SAS.StateMachineGraph
 {
@@ -42,21 +40,5 @@ namespace SAS.StateMachineGraph
             Conditions = conditions;
             WaitForAwaitableActionsToComplete = waitForAwaitableActionsToComplete;
         }
-
-
-        internal void StateEventForCustomTrigger(ref HashSet<StateEvent> stateEnterDelegates, ref HashSet<StateEvent> stateExitDelegates)
-        {
-            int count = Conditions.Length;
-            for(int i =0; i < count; ++i)
-            {
-                if (Conditions[i].CustomTrigger != null)
-                {
-                    stateEnterDelegates.Add(Conditions[i].CustomTrigger.OnStateEnter);
-                    stateExitDelegates.Add(Conditions[i].CustomTrigger.OnStateExit);
-                }
-            }
-
-        }
     }
-    public delegate void StateEvent();
 }

@@ -41,7 +41,7 @@ namespace SAS.StateMachineGraph
 		public State State { get; private set; }
 
 
-		internal State GetState(StateMachine stateMachine, Dictionary<ScriptableObject, object> cachedStates, Dictionary<StateActionModel, object[]> cachedActions, Dictionary<string, ICustomTrigger> cachedTriggers)
+		internal State GetState(StateMachine stateMachine, Dictionary<ScriptableObject, object> cachedStates, Dictionary<StateActionModel, object[]> cachedActions)
 		{
 			if (cachedStates.TryGetValue(this, out var obj))
 				return (State)obj;
@@ -50,18 +50,17 @@ namespace SAS.StateMachineGraph
 			State = state;
 			cachedStates.Add(this, state);
 			CreateGetActions(m_StateActions, stateMachine, state, cachedActions);
-			state._transitionStates = GetTransitions(m_Transitions, stateMachine, cachedStates, cachedActions, cachedTriggers);
-			foreach(var transitionState in state._transitionStates)
-				transitionState.StateEventForCustomTrigger(ref state._stateEnterEventForCustomeTriggers, ref state._stateExitEventForCustomeTriggers);
+			state._transitionStates = GetTransitions(m_Transitions, stateMachine, cachedStates, cachedActions);
+			
 			return state;
 		}
 
-		private TransitionState[] GetTransitions(StateTransitionModel[] transitionModels, StateMachine stateMachine, Dictionary<ScriptableObject, object> cachedStates, Dictionary<StateActionModel, object[]> cachedActions, Dictionary<string, ICustomTrigger> cachedTriggers)
+		private TransitionState[] GetTransitions(StateTransitionModel[] transitionModels, StateMachine stateMachine, Dictionary<ScriptableObject, object> cachedStates, Dictionary<StateActionModel, object[]> cachedActions)
 		{
 			int count = transitionModels.Length;
 			var transitions = new TransitionState[count];
 			for (int i = 0; i < count; i++)
-				transitions[i] = transitionModels[i].GetTransition(stateMachine, cachedStates, cachedActions, cachedTriggers);
+				transitions[i] = transitionModels[i].GetTransition(stateMachine, cachedStates, cachedActions);
 
 			return transitions;
 		}

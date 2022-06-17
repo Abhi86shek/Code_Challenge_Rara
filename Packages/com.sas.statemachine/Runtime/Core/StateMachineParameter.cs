@@ -11,8 +11,7 @@ namespace SAS.StateMachineGraph
             Float = 1,
             Int = 3,
             Bool = 4,
-            Trigger = 9,
-            CustomTrigger = 0
+            Trigger = 9
         }
 
         [SerializeField] private string m_Name;

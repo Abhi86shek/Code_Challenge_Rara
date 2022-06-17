@@ -26,9 +26,11 @@ namespace SAS.StateMachineGraph.Editor
             _removeConnection = removeConnection;
         }
 
-        private void DrwaConnection()
+        private void DrawConnection()
         {
             bool inverted = false;
+            if (StartNode == null || EndNode == null)
+                return;
             if (StartNode.Position.y < EndNode.Position.y)
             {
                 _startPos = StartNode.startPort.rect.center;
@@ -85,7 +87,7 @@ namespace SAS.StateMachineGraph.Editor
 
         public void Draw()
         {
-            DrwaConnection();
+            DrawConnection();
         }
 
         public void ProcessMouseEvent(Event e)

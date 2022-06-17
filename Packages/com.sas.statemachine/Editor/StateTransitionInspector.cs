@@ -1,11 +1,7 @@
-﻿using SAS.StateMachineGraph.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
-using EditorUtility = SAS.Utilities.Editor.EditorUtility;
 
 namespace SAS.StateMachineGraph.Editor
 {
@@ -41,11 +37,9 @@ namespace SAS.StateMachineGraph.Editor
 
         private int _transitionCount;
         public static int SelectedTransitionIndex = -1;
-        private Type[] _allCustomtriggerTypes;
 
         private void OnEnable()
         {
-            _allCustomtriggerTypes = AppDomain.CurrentDomain.GetAllDerivedTypes<ICustomTrigger>().ToArray();
             _stateTransitionModelSO = new SerializedObject(target);
             var runtimeStateMachineController = AssetDatabase.LoadMainAssetAtPath(AssetDatabase.GetAssetPath(target)) as RuntimeStateMachineController;
             _transitionConditions = new ReorderableList(_stateTransitionModelSO, _stateTransitionModelSO.FindProperty("m_Conditions"), true, true, true, true);
@@ -144,18 +138,6 @@ namespace SAS.StateMachineGraph.Editor
                 type.intValue = GetParameterType(curIndex);
                 var value = element.FindPropertyRelative("m_FloatValue");
 
-                if (type.intValue == 0) //ParameterType.CustomTrigger
-                {
-                    var customtrigger = element.FindPropertyRelative("m_CustomTrigger");
-                    var curActionIndex = Array.FindIndex(_allCustomtriggerTypes, ele => ele.AssemblyQualifiedName == customtrigger.stringValue);
-                    var pos = new Rect(rect.width / 3 + 50, rect.y, rect.width - (rect.width / 3 + 20), rect.height);
-                    int id = GUIUtility.GetControlID("customtrigger".GetHashCode(), FocusType.Keyboard, pos);
-                    if (curActionIndex != -1 || string.IsNullOrEmpty(customtrigger.stringValue))
-                        EditorUtility.DropDown(id, pos, _allCustomtriggerTypes.Select(ele => SerializedType.Sanitize(ele.ToString())).ToArray(), curActionIndex, selectedIndex => SetSelectedCustomTrigger(customtrigger, selectedIndex));
-                    else
-                        EditorUtility.DropDown(id, pos, _allCustomtriggerTypes.Select(ele => SerializedType.Sanitize(ele.ToString())).ToArray(), curActionIndex, customtrigger.stringValue, Color.red, selectedIndex => SetSelectedCustomTrigger(customtrigger, selectedIndex));
-                }
-
                 if (type.intValue == 1) //ParameterType.Float
                 {
                     if (!System.Enum.IsDefined(typeof(FloatMode), mode.intValue))
@@ -192,27 +174,15 @@ namespace SAS.StateMachineGraph.Editor
                 _stateMachineSO = runtimeStateMachineController.ToSerializedObject();
                 FilterTransitions(SelectedTransitionIndex, stateModelSO);
                 _parametersList = runtimeStateMachineController.ParametersName();
-                _parametersList = _parametersList.Add("Custom");
             }
         }
 
         private int GetParameterType(int index)
         {
             var parameters = _stateMachineSO.FindProperty("_parameters");
-            try
-            {
-                if (parameters.arraySize > 0)
-                {
-                    var element = parameters.GetArrayElementAtIndex(index);
-                    var type = element.FindPropertyRelative("m_Type");
-                    return type.intValue;
-                }
-                return 0;
-            }
-            catch
-            {
-                return 0;
-            }
+            var element = parameters.GetArrayElementAtIndex(index);
+            var type = element.FindPropertyRelative("m_Type");
+            return type.intValue;
         }
 
         private int GetParameterIndex(string name)
@@ -307,13 +277,6 @@ namespace SAS.StateMachineGraph.Editor
         {
             _stateTransitionModelSO.ApplyModifiedProperties();
             _sourceStateModelSO.ApplyModifiedProperties();
-        }
-
-        private void SetSelectedCustomTrigger(SerializedProperty sp, int index)
-        {
-            if (index != -1)
-                sp.stringValue = _allCustomtriggerTypes[index].AssemblyQualifiedName;
-            serializedObject.ApplyModifiedProperties();
         }
     }
 }
