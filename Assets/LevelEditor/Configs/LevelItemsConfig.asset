@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9a4227f0501c04ab3cd8474d06f046, type: 3}
+  m_Name: LevelItemsConfig
+  m_EditorClassIdentifier: 
+  items:
+  - m_Name: Player
+    m_DisplayName: Player
+    m_GameObject: {fileID: 5640901729515321829, guid: b593ab080b7dca14094040d7ac593ec1, type: 3}
+    m_MaxCount: 1
+  - m_Name: WanderNPC
+    m_DisplayName: NPC Wander
+    m_GameObject: {fileID: 4227000220485271084, guid: 7133d82e18842be42a8367e4c35fea22, type: 3}
+    m_MaxCount: -1
+  - m_Name: ChaseNPC
+    m_DisplayName: NPC   chase
+    m_GameObject: {fileID: 2152237886172964281, guid: a2e0eac40796c82479a8e5bc164656be, type: 3}
+    m_MaxCount: -1
+  - m_Name: HighBlock
+    m_DisplayName: High    Block
+    m_GameObject: {fileID: 6577586249833150029, guid: 57df39f749b88a849be8c8303185b05b, type: 3}
+    m_MaxCount: -1
+  - m_Name: LowBlock
+    m_DisplayName: Low     Block
+    m_GameObject: {fileID: 6487414013038287598, guid: 4c8976344dcb95e4a935678c92c48540, type: 3}
+    m_MaxCount: -1
+  - m_Name: Coin
+    m_DisplayName: Coin
+    m_GameObject: {fileID: 7422732430728650838, guid: 9c28d7c513f23644797a12358a2df54a, type: 3}
+    m_MaxCount: -1
+  - m_Name: Flag
+    m_DisplayName: Flag
+    m_GameObject: {fileID: 7102189803370132512, guid: ee6d8cae99303814999b2453aa79628c, type: 3}
+    m_MaxCount: 1
+  - m_Name: Turret
+    m_DisplayName: Turret
+    m_GameObject: {fileID: 2162971809502818699, guid: 52bd823a99591854ebdcfb63d6b007b5, type: 3}
+    m_MaxCount: -1
+  - m_Name: Mine
+    m_DisplayName: Mine
+    m_GameObject: {fileID: 8252400209364796756, guid: 0673baa093261bc4e904ea514820cb4f, type: 3}
+    m_MaxCount: -1
