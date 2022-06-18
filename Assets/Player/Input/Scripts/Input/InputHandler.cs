@@ -36,7 +36,7 @@ namespace Rara.FSMCharacterController.Input
             jumpInputAction.Enable();
 
             _jumpPerformed = _ => _player.OnJumpInitiated();
-            _jumpCanceled = _ => _player.OnJumpInitiated();
+            _jumpCanceled = _ => _player.OnJumpCanceled();
 
             jumpInputAction.performed += _jumpPerformed;
             jumpInputAction.canceled += _jumpCanceled;
