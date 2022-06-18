@@ -1,3 +1,4 @@
+using Rara.Collectables;
 using SAS.StateMachineGraph;
 using SAS.Utilities.TagSystem;
 using System;
@@ -52,6 +53,30 @@ namespace Rara.FSMCharacterController
         public void OnJumpCanceled()
         {
             Actor.SetBool("Jump", false);
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            ICollectable<Coin>.OnPicked += OnCoinCollected;
+            ICollectable<Flag>.OnPicked += OnFlagCaptured;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            ICollectable<Coin>.OnPicked -= OnCoinCollected;
+            ICollectable<Flag>.OnPicked -= OnFlagCaptured;
+        }
+
+        private void OnFlagCaptured(Flag obj)
+        {
+            Debug.Log("Captured Flag");
+        }
+
+        private void OnCoinCollected(Coin obj)
+        {
+            Debug.Log("Collected Coin");
         }
     }
 }

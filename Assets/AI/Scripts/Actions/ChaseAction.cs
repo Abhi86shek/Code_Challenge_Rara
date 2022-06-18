@@ -19,7 +19,10 @@ namespace Rara.FSMCharacterController.AI
         void IStateAction.Execute(Actor actor)
         {
             if (_player == null)
-                _player = GameObject.FindObjectOfType<Player>().transform;
+            {
+                _player = Object.FindObjectOfType<Player>()?.transform;
+                return;
+            }
             _agent.SetDestination(_player.position);
         }
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3979093234867181261}
   - component: {fileID: 3935302730993642510}
   - component: {fileID: 8404804340104788556}
+  - component: {fileID: 129907770}
   m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &129907770
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571496377710705885}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5640901729515321829
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +111,7 @@ GameObject:
   - component: {fileID: 4411886722376682446}
   - component: {fileID: 1955699486}
   - component: {fileID: 1955699487}
+  - component: {fileID: 1683448829}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -197,6 +213,18 @@ MonoBehaviour:
     name: 
   - data: {fileID: 11400000, guid: e3b33de9a3bc947448ab69e7f816dda3, type: 2}
     name: HeadHIt
+--- !u!114 &1683448829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5640901729515321829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e868f9c30718c84eaf51723ed824f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7891096382583676610
 GameObject:
   m_ObjectHideFlags: 0

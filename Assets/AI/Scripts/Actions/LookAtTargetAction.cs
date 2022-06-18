@@ -22,7 +22,10 @@ namespace Rara.FSMCharacterController.AI
         void IStateAction.Execute(Actor actor)
         {
             if (_player == null)
-                _player = GameObject.FindObjectOfType<Player>().LookAtTransform;
+            {
+                _player = GameObject.FindObjectOfType<Player>()?.LookAtTransform;
+                return;
+            }
 
             var targetRotation = Quaternion.LookRotation(_player.position - _transform.position);
             _transform.rotation = Quaternion.Lerp(_transform.rotation, targetRotation, Time.deltaTime * _turnSmoothSpeed.runtimeValue);

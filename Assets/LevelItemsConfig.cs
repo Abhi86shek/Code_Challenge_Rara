@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelItemsConfig : ScriptableObject
+namespace Rara
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "LevelItemsConfig", menuName = "Rara/Level/ItemsConfig")]
+    public class LevelItemsConfig : ScriptableObject
     {
-        
-    }
+        public class Item
+        {
+            public string m_Name;
+            public GameObject m_GameObject;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public Item[] items;
     }
 }
