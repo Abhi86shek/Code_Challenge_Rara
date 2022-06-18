@@ -1,0 +1,234 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9118444361434935449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed43b1bea1e69d49a73ea66f6732994, type: 3}
+  m_Name: Base StateMachine
+  m_EditorClassIdentifier: 
+  m_Position: {x: 300, y: 50, z: 0}
+  m_PositionAsUpNode: {x: 700, y: 100, z: 0}
+  m_AnyStatePosition: {x: 487.13782, y: 5.065254, z: 0}
+  m_ParentStateMachine: {fileID: 0}
+  m_ChildStateMachines: []
+  m_StateModels:
+  - {fileID: 829228333676380508}
+  - {fileID: -4450936326541191679}
+--- !u!114 &-8829872787075223258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Any State
+  m_EditorClassIdentifier: 
+  m_Position: {x: 487.13782, y: 5.065254, z: 0}
+  m_Tag: 
+  m_StateActions: []
+  m_Transitions: []
+--- !u!114 &-7594864530747185331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Fire->To->Fire Delay
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: 829228333676380508}
+  m_TargetState: {fileID: -184424960934361604}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions: []
+--- !u!114 &-6615874678826218403
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Idle->To->Fire
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -4450936326541191679}
+  m_TargetState: {fileID: 829228333676380508}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: Fire
+    m_Mode: 1
+    m_Type: 4
+    m_FloatValue: 0
+--- !u!114 &-4450936326541191679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Idle
+  m_EditorClassIdentifier: 
+  m_Position: {x: 887.34436, y: 150.83607, z: 0}
+  m_Tag: 
+  m_StateActions: []
+  m_Transitions:
+  - {fileID: -6615874678826218403}
+--- !u!114 &-1557755115562610488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Rate of Fire
+  m_EditorClassIdentifier: 
+  m_Position: {x: 894.1932, y: 363.87085, z: 0}
+  m_Tag: 
+  m_StateActions: []
+  m_Transitions: []
+--- !u!114 &-184424960934361604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Rate of Fire
+  m_EditorClassIdentifier: 
+  m_Position: {x: 892.6988, y: 367.96283, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: SAS.WeaponSystem.FireRatePause, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    tag: 
+    key: RateOfFire
+    whenToExecute: 1
+  m_Transitions:
+  - {fileID: 6419806405596150557}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1523b8ee4bacc64cb19ba28d47e9317, type: 3}
+  m_Name: Weapon FSM Controller
+  m_EditorClassIdentifier: 
+  m_BaseStateMachineModel: {fileID: -9118444361434935449}
+  _parameters:
+  - m_Name: Fire
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 1
+  m_DefaultStateModel: {fileID: -4450936326541191679}
+  m_AnyStateModel: {fileID: -8829872787075223258}
+--- !u!114 &829228333676380508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  m_Position: {x: 886.1216, y: 288.8277, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: Rara.WeaponSystem.Fire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    tag: 
+    key: 
+    whenToExecute: 1
+  m_Transitions:
+  - {fileID: 3153365711150890802}
+--- !u!114 &3153365711150890802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Fire->To->Idle
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: 829228333676380508}
+  m_TargetState: {fileID: -4450936326541191679}
+  m_HasExitTime: 1
+  m_ExitTime: 0.5
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions: []
+--- !u!114 &4563328654771481856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Idle->To->Fire
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -4450936326541191679}
+  m_TargetState: {fileID: 829228333676380508}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: Fire
+    m_Mode: 1
+    m_Type: 4
+    m_FloatValue: 0
+--- !u!114 &6419806405596150557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Rate of Fire->To->Idle
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -184424960934361604}
+  m_TargetState: {fileID: -4450936326541191679}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions: []

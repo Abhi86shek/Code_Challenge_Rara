@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17542eece5b493f4f88c8da9884efda2, type: 3}
-  m_Name: Tag List
+  m_Script: {fileID: 11500000, guid: fdfa13d8a15d6c14c9f76959075084a8, type: 3}
+  m_Name: TurretPlayerLookAtRange
   m_EditorClassIdentifier: 
-  values:
-  - Head
-  - Weapon
+  m_InitialValue: 8

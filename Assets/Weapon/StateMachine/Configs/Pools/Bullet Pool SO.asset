@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17542eece5b493f4f88c8da9884efda2, type: 3}
-  m_Name: Tag List
+  m_Script: {fileID: 11500000, guid: 10b3afd2e910a2d4d8abb36eb38df812, type: 3}
+  m_Name: Bullet Pool SO
   m_EditorClassIdentifier: 
-  values:
-  - Head
-  - Weapon
+  _factory: {fileID: 11400000, guid: bce6bc5fc25d7c943bda981db7fc8a82, type: 2}

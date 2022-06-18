@@ -1,0 +1,267 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7588285897691844592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  m_Position: {x: 876.1288, y: 236.51608, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: Rara.FSMCharacterController.AI.LookAtTargetAction, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: TurnSmoothSpeed
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.AI.IsInRange, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: LookAtRange
+    whenToExecute: 8
+  - fullName: SAS.StateMachineGraph.Utilities.ActivateObjects, AssemblyStateMachine,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    tag: Weapon
+    key: 
+    whenToExecute: 8
+  m_Transitions:
+  - {fileID: -3370236739665228268}
+--- !u!114 &-4335747848502290157
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: LookAt->To->Fire
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: 2401485068797160398}
+  m_TargetState: {fileID: -7588285897691844592}
+  m_HasExitTime: 1
+  m_ExitTime: 1
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions: []
+--- !u!114 &-4020848549910619821
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed43b1bea1e69d49a73ea66f6732994, type: 3}
+  m_Name: Base StateMachine
+  m_EditorClassIdentifier: 
+  m_Position: {x: 300, y: 50, z: 0}
+  m_PositionAsUpNode: {x: 700, y: 100, z: 0}
+  m_AnyStatePosition: {x: 300, y: 50, z: 0}
+  m_ParentStateMachine: {fileID: 0}
+  m_ChildStateMachines: []
+  m_StateModels:
+  - {fileID: 8652523233812273907}
+  - {fileID: 2401485068797160398}
+  - {fileID: -7588285897691844592}
+--- !u!114 &-3923525127309150223
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Idle->To->LookAt
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: 8652523233812273907}
+  m_TargetState: {fileID: 2401485068797160398}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: IsInLookAtRange
+    m_Mode: 1
+    m_Type: 4
+    m_FloatValue: 0
+--- !u!114 &-3780941415306135470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: LookAt->To->Idle
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: 2401485068797160398}
+  m_TargetState: {fileID: 8652523233812273907}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: IsInLookAtRange
+    m_Mode: 2
+    m_Type: 4
+    m_FloatValue: 0
+--- !u!114 &-3370236739665228268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f0dc7669bda5a4eb7472cb2dc10cb7, type: 3}
+  m_Name: Fire->To->Idle
+  m_EditorClassIdentifier: 
+  m_SourceState: {fileID: -7588285897691844592}
+  m_TargetState: {fileID: 8652523233812273907}
+  m_HasExitTime: 0
+  m_ExitTime: 0
+  m_WaitForAwaitableActionsToComplete: 1
+  m_Conditions:
+  - m_Name: IsInLookAtRange
+    m_Mode: 2
+    m_Type: 4
+    m_FloatValue: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1523b8ee4bacc64cb19ba28d47e9317, type: 3}
+  m_Name: Turret FSM
+  m_EditorClassIdentifier: 
+  m_BaseStateMachineModel: {fileID: -4020848549910619821}
+  _parameters:
+  - m_Name: IsInLookAtRange
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+  m_DefaultStateModel: {fileID: 8652523233812273907}
+  m_AnyStateModel: {fileID: 6604498580144863575}
+--- !u!114 &2401485068797160398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: LookAt
+  m_EditorClassIdentifier: 
+  m_Position: {x: 876.1288, y: 144.51608, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: Rara.FSMCharacterController.AI.LookAtTargetAction, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: TurnSmoothSpeed
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.AI.IsInRange, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: LookAtRange
+    whenToExecute: 8
+  m_Transitions:
+  - {fileID: -3780941415306135470}
+  - {fileID: -4335747848502290157}
+--- !u!114 &6604498580144863575
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Any State
+  m_EditorClassIdentifier: 
+  m_Position: {x: 300, y: 50, z: 0}
+  m_Tag: 
+  m_StateActions: []
+  m_Transitions: []
+--- !u!114 &8260030480463432209
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: LookAt 1
+  m_EditorClassIdentifier: 
+  m_Position: {x: 912.1288, y: 208.51608, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: Rara.FSMCharacterController.AI.LookAtTargetAction, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: TurnSmoothSpeed
+    whenToExecute: 4
+  - fullName: Rara.FSMCharacterController.AI.IsInRange, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: LookAtRange
+    whenToExecute: 8
+  - fullName: SAS.StateMachineGraph.Utilities.ActivateObjects, AssemblyStateMachine,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    tag: Weapon
+    key: 
+    whenToExecute: 8
+  m_Transitions: []
+--- !u!114 &8652523233812273907
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
+  m_Name: Idle
+  m_EditorClassIdentifier: 
+  m_Position: {x: 612.903, y: 140.64511, z: 0}
+  m_Tag: 
+  m_StateActions:
+  - fullName: Rara.FSMCharacterController.AI.ResetRotationAction, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: TurnSmoothSpeed
+    whenToExecute: 8
+  - fullName: Rara.FSMCharacterController.AI.IsInRange, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    tag: 
+    key: LookAtRange
+    whenToExecute: 8
+  - fullName: SAS.StateMachineGraph.Utilities.DeactivateObjects, AssemblyStateMachine,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    tag: Weapon
+    key: 
+    whenToExecute: 1
+  m_Transitions:
+  - {fileID: -3923525127309150223}

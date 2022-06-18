@@ -1,14 +1,17 @@
 using SAS.StateMachineGraph;
+using SAS.Utilities.TagSystem;
 using System;
 using UnityEngine;
 
 namespace Rara.FSMCharacterController
 {
     [RequireComponent(typeof(Actor)), DisallowMultipleComponent]
-    public class Player : MonoBehaviour
+    public class Player : MonoBase
     {
-       /* [NonSerialized]*/ public Vector3 movementVector;
-       /* [NonSerialized]*/ public Vector3 movementInput;
+        [NonSerialized] public Vector3 movementVector;
+        [NonSerialized] public Vector3 movementInput;
+
+        [FieldRequiresChild("Head")] private Transform _lookAtTransform;
         public float NormalizedMoveInput => movementInput.magnitude;
         
         private Actor _actor;
@@ -33,6 +36,8 @@ namespace Rara.FSMCharacterController
                 Actor.SetBool("IsGrounded", _isGrounded);
             }
         }
+
+        public Transform LookAtTransform => _lookAtTransform;
 
         public void OnMove(float normalizedMoveInput)
         {
