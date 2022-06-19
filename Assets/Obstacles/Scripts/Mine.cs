@@ -16,7 +16,7 @@ namespace Rara.Obstacles
         {
             if ((1 << other.gameObject.layer) == m_Player.runtimeValue.value)
             {
-                Destroy(other.transform.root.gameObject);
+                other.transform.root.gameObject.SendMessage("OnEnterInExplodable", this, SendMessageOptions.DontRequireReceiver);
                 Explode();
             }
         }

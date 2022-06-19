@@ -75,5 +75,10 @@ namespace Rara.FSMCharacterController
         {
             Debug.Log("Collected Coin");
         }
+
+        private void OnEnterInExplodable(object explodable)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
