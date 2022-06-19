@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace Rara.LevelEditor
 {
-    public class LevelEditorUI : MonoBase, IPointerDownHandler
+    public class LevelEditorUI : MonoBase
     {
         class LevelObject
         {
@@ -19,17 +19,13 @@ namespace Rara.LevelEditor
 
         [SerializeField] LevelItemsConfig m_ItemsConfig;
         [SerializeField] ItemButton m_ItemButtonTemplate;
-
+        [SerializeField] EventTrigger m_levelEditingEventTrigger;
         [FieldRequiresChild("Content")] private Transform _content;
 
         private List<LevelObject> _levelObjects = new List<LevelObject>();
-
         private Item _selectedItem;
-
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            Debug.Log(eventData.selectedObject);
-        }
+        private bool _testMode = false;
+        EventTrigger.Entry _entry = new EventTrigger.Entry();
 
         // Start is called before the first frame update
         protected override void Start()
@@ -40,16 +36,22 @@ namespace Rara.LevelEditor
                 var itemButton = Instantiate<ItemButton>(m_ItemButtonTemplate, _content);
                 itemButton.Set(item, SelectItem);
             }
+
+            _entry.eventID = EventTriggerType.PointerDown;
+            _entry.callback.AddListener((data) => { PointerDown((PointerEventData)data); });
+            m_levelEditingEventTrigger.triggers.Add(_entry);
         }
 
         private void SelectItem(Item item)
         {
             _selectedItem = item;
-            Debug.Log($"{ _selectedItem.DisplayName}");
         }
 
-        public void PointerDown(BaseEventData eventData)
+        private void PointerDown(BaseEventData eventData)
         {
+            if (_testMode)
+                return;
+
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out var hit, 1000f))
             {
@@ -69,10 +71,12 @@ namespace Rara.LevelEditor
 
         public void TestButtonAction()
         {
+            m_levelEditingEventTrigger.triggers.Remove(_entry);
+            _testMode = true;
+            _selectedItem = null;
             foreach (var levelObject in _levelObjects)
             {
-                levelObject.gameObject.SetActive(true);
-                var activatables = levelObject.gameObject.GetComponentsInChildren<IActivatable>();
+                var activatables = levelObject.gameObject.GetComponentsInChildren<IActivatable>(true);
                 foreach (var activatable in activatables)
                 {
                     if (activatable != null)
@@ -83,11 +87,15 @@ namespace Rara.LevelEditor
 
         public void PlaceButtonAction()
         {
+            m_levelEditingEventTrigger.triggers.Add(_entry);
+            _testMode = false;
+            _selectedItem = null;
             foreach (var levelObject in _levelObjects)
             {
                 if (levelObject.gameObject != null)
                 {
-                    var activatables = levelObject.gameObject.GetComponentsInChildren<IActivatable>();
+                    levelObject.gameObject.SetActive(true);
+                    var activatables = levelObject.gameObject.GetComponentsInChildren<IActivatable>(true);
                     foreach (var activatable in activatables)
                     {
                         if (activatable != null)
