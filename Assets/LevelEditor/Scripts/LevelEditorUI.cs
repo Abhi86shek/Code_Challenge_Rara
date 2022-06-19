@@ -94,7 +94,6 @@ namespace Rara.LevelEditor
             {
                 if (levelObject.gameObject != null)
                 {
-                    levelObject.gameObject.SetActive(true);
                     var activatables = levelObject.gameObject.GetComponentsInChildren<IActivatable>(true);
                     foreach (var activatable in activatables)
                     {
@@ -102,6 +101,7 @@ namespace Rara.LevelEditor
                             activatable.Deactivate();
                     }
                     levelObject.gameObject.transform.position = levelObject.initialPosition;
+                    levelObject.gameObject.SetActive(true);
                 }
             }
         }
