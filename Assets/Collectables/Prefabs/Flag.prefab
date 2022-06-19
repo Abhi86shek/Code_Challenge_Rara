@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InitializeOnStart: 0
+  m_OnCollectedEvent: {fileID: 11400000, guid: 864e7228fb6694b43a4f5e5387ef45c3, type: 2}
 --- !u!65 &8289713430748623491
 BoxCollider:
   m_ObjectHideFlags: 0

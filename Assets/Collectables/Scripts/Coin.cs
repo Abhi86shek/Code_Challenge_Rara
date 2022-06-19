@@ -1,19 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SAS.Utilities.TagSystem;
-using System;
-
 namespace Rara.Collectables
 {
-    public class Coin : MonoBase, ICollectable<Coin>
+    public class Coin : BaseCollectable<Coin>
     {
-        [FieldRequiresSelf] Transform _transform;
-
-        public void Collect()
+        public override void Collect()
         {
-            ICollectable<Coin>.OnPicked?.Invoke(this);
             _transform.gameObject.SetActive(false);
+            base.Collect();
         }
     }
 }

@@ -6,12 +6,12 @@ namespace Rara.Collectables
     {
         private void OnTriggerEnter(Collider other)
         {
-            var coin = other.GetComponentInParent<ICollectable<Coin>>();
+            var coin = other.GetComponentInParent<BaseCollectable<Coin>>();
             if (coin != null)
                 coin.Collect();
             else
             {
-                var flag = other.GetComponentInParent<ICollectable<Flag>>();
+                var flag = other.GetComponentInParent<BaseCollectable<Flag>>();
                 if (flag != null)
                     flag.Collect();
 

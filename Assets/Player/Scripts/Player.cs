@@ -52,30 +52,6 @@ namespace Rara.FSMCharacterController
             Actor.SetBool("Jump", false);
         }
 
-        protected override void Start()
-        {
-            base.Start();
-            ICollectable<Coin>.OnPicked += OnCoinCollected;
-            ICollectable<Flag>.OnPicked += OnFlagCaptured;
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            ICollectable<Coin>.OnPicked -= OnCoinCollected;
-            ICollectable<Flag>.OnPicked -= OnFlagCaptured;
-        }
-
-        private void OnFlagCaptured(Flag obj)
-        {
-            Debug.Log("Captured Flag! You Won.....");
-        }
-
-        private void OnCoinCollected(Coin obj)
-        {
-            Debug.Log("Collected Coin");
-        }
-
         private void OnEnterInExplodable(object explodable)
         {
             gameObject.SetActive(false);

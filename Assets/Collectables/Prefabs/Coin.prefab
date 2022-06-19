@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InitializeOnStart: 0
+  m_OnCollectedEvent: {fileID: 11400000, guid: 3e1dc2d12b5e87c4db6d1e08649748fb, type: 2}

@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Player: {fileID: 11400000, guid: 5a28b2021cbf03b46ac01a67593435eb, type: 2}
+  m_OnCollisionEvent: {fileID: 11400000, guid: 4637e331b42938045898d15ae81050c1, type: 2}
 --- !u!65 &9197667478124820826
 BoxCollider:
   m_ObjectHideFlags: 0

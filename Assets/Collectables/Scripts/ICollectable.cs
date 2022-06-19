@@ -7,7 +7,6 @@ namespace Rara.Collectables
 {
     public interface ICollectable<in T> where T : ICollectable<T>
     {
-        public static Action<T> OnPicked;
         void Collect();
     }
 }
