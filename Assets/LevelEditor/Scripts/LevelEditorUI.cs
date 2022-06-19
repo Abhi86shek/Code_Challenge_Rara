@@ -71,7 +71,8 @@ namespace Rara.LevelEditor
         {
             foreach (var levelObject in _levelObjects)
             {
-                var activatables = levelObject.gameObject.GetComponents<IActivatable>();
+                levelObject.gameObject.SetActive(true);
+                var activatables = levelObject.gameObject.GetComponentsInChildren<IActivatable>();
                 foreach (var activatable in activatables)
                 {
                     if (activatable != null)
@@ -86,7 +87,7 @@ namespace Rara.LevelEditor
             {
                 if (levelObject.gameObject != null)
                 {
-                    var activatables = levelObject.gameObject.GetComponents<IActivatable>();
+                    var activatables = levelObject.gameObject.GetComponentsInChildren<IActivatable>();
                     foreach (var activatable in activatables)
                     {
                         if (activatable != null)
