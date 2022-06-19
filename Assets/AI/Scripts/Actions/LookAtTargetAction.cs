@@ -10,8 +10,8 @@ namespace Rara.FSMCharacterController.AI
     public class LookAtTargetAction : IStateAction
     {
         [FieldRequiresChild("Head")] private Transform _transform;
+        [FieldRequiresSelf] private AIPlayer _aiPlayer;
         private ScriptableFloat _turnSmoothSpeed;
-        private Transform _player;
 
         void IStateAction.OnInitialize(Actor actor, string tag, string key, State state)
         {
@@ -21,13 +21,10 @@ namespace Rara.FSMCharacterController.AI
 
         void IStateAction.Execute(Actor actor)
         {
-            if (_player == null)
-            {
-                _player = GameObject.FindObjectOfType<Player>()?.LookAtTransform;
+            if (!_aiPlayer.Target.IsActive())
                 return;
-            }
 
-            var targetRotation = Quaternion.LookRotation(_player.position - _transform.position);
+            var targetRotation = Quaternion.LookRotation(_aiPlayer.Target.Transform.position - _transform.position);
             _transform.rotation = Quaternion.Lerp(_transform.rotation, targetRotation, Time.deltaTime * _turnSmoothSpeed.runtimeValue);
         }
     }

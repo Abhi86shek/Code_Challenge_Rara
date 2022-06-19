@@ -8,8 +8,7 @@ namespace Rara.FSMCharacterController.AI
     public class ChaseAction : IStateAction
     {
         [FieldRequiresSelf] private NavMeshAgent _agent;
-
-        private Transform _player;
+        [FieldRequiresSelf] private AIPlayer _aiPlayer;
 
         void IStateAction.OnInitialize(Actor actor, string tag, string key, State state)
         {
@@ -18,12 +17,10 @@ namespace Rara.FSMCharacterController.AI
 
         void IStateAction.Execute(Actor actor)
         {
-            if (_player == null)
-            {
-                _player = Object.FindObjectOfType<Player>()?.transform;
+            if (!_aiPlayer.Target.IsActive())
                 return;
-            }
-            _agent.SetDestination(_player.position);
+
+            _agent.SetDestination(_aiPlayer.Target.Transform.position);
         }
 
     }

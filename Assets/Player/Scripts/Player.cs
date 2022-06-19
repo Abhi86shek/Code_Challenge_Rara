@@ -12,7 +12,6 @@ namespace Rara.FSMCharacterController
         [NonSerialized] public Vector3 movementVector;
         [NonSerialized] public Vector3 movementInput;
 
-        [FieldRequiresChild("Head")] private Transform _lookAtTransform;
         public float NormalizedMoveInput => movementInput.magnitude;
         
         private Actor _actor;
@@ -37,8 +36,6 @@ namespace Rara.FSMCharacterController
                 Actor.SetBool("IsGrounded", _isGrounded);
             }
         }
-
-        public Transform LookAtTransform => _lookAtTransform;
 
         public void OnMove(float normalizedMoveInput)
         {
