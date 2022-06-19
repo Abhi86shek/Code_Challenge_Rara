@@ -6,7 +6,7 @@ namespace Rara.FSMCharacterController
 	public class VerticalPull : IStateAction
 	{
 		private  Player _player;
-		private ScriptableFloat _verticalPull;
+		private ScriptableReadOnlyFloat _verticalPull;
 
         void IStateAction.OnInitialize(Actor actor, string tag, string key, State state)
         {
@@ -16,7 +16,7 @@ namespace Rara.FSMCharacterController
 
         void IStateAction.Execute(Actor actor)
         {
-			_player.movementVector.y = _verticalPull.runtimeValue;
+			_player.movementVector.y = _verticalPull.value;
 		}
     }
 }

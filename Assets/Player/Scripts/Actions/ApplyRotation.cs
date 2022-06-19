@@ -8,7 +8,7 @@ namespace Rara.FSMCharacterController
     {
         private Player _player;
         private Transform _transform;
-        private ScriptableFloat _turnSmoothTime;
+        private ScriptableReadOnlyFloat _turnSmoothTime;
 
         private float _turnSmoothSpeed;
 
@@ -27,7 +27,7 @@ namespace Rara.FSMCharacterController
             if (horizontalMovement.sqrMagnitude >= 0.02f)
             {
                 float targetRotation = Mathf.Atan2(_player.movementVector.x, _player.movementVector.z) * Mathf.Rad2Deg;
-                _transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(_transform.eulerAngles.y, targetRotation, ref _turnSmoothSpeed, _turnSmoothTime.runtimeValue);
+                _transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(_transform.eulerAngles.y, targetRotation, ref _turnSmoothSpeed, _turnSmoothTime.value);
             }
         }
     }

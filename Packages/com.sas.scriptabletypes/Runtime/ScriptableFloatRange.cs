@@ -8,7 +8,7 @@ namespace SAS.ScriptableTypes
     public class ScriptableFloatRange : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] private floatRange m_InitialValue = default;
-        [NonSerialized] public floatRange runtimeValue;
+        [NonSerialized] public floatRange value;
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
@@ -16,7 +16,7 @@ namespace SAS.ScriptableTypes
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
-            runtimeValue = m_InitialValue;
+            value = m_InitialValue;
         }
     }
 }

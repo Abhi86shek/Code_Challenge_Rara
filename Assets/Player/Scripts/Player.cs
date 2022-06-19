@@ -68,7 +68,7 @@ namespace Rara.FSMCharacterController
 
         private void OnFlagCaptured(Flag obj)
         {
-            Debug.Log("Captured Flag");
+            Debug.Log("Captured Flag! You Won.....");
         }
 
         private void OnCoinCollected(Coin obj)

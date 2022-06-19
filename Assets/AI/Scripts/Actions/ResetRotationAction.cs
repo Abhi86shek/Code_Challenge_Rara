@@ -8,7 +8,7 @@ namespace Rara.FSMCharacterController.AI
     public class ResetRotationAction : IStateAction
     {
         [FieldRequiresChild("Head")] private Transform _transform;
-        private ScriptableFloat _turnSmoothSpeed;
+        private ScriptableReadOnlyFloat _turnSmoothSpeed;
 
         private Quaternion _initialRotation;
 
@@ -21,7 +21,7 @@ namespace Rara.FSMCharacterController.AI
 
         void IStateAction.Execute(Actor actor)
         {
-            _transform.rotation = Quaternion.Lerp(_transform.rotation, _initialRotation, Time.deltaTime * _turnSmoothSpeed.runtimeValue);
+            _transform.rotation = Quaternion.Lerp(_transform.rotation, _initialRotation, Time.deltaTime * _turnSmoothSpeed.value);
         }
     }
 }

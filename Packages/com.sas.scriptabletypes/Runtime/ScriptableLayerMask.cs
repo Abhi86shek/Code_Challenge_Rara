@@ -7,7 +7,7 @@ namespace SAS.ScriptableTypes
     public class ScriptableLayerMask : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] private LayerMask m_InitialValue = default;
-        public LayerMask runtimeValue { get; private set; }
+        public LayerMask value { get; private set; }
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
@@ -15,7 +15,7 @@ namespace SAS.ScriptableTypes
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
-            runtimeValue = m_InitialValue;
+            value = m_InitialValue;
         }
     }
 }

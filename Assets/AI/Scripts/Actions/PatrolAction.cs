@@ -12,8 +12,8 @@ namespace Rara.FSMCharacterController.AI
         [FieldRequiresSelf] private NavMeshAgent _agent;
 
         private bool _walkPointSet;
-        private ScriptableFloatRange _range;
-        private ScriptableLayerMask _ground;
+        private ScriptableReadOnlyFloatRange _range;
+        private ScriptableReadOnlyLayerMask _ground;
         private Vector3 _walkPoint;
         
         void IStateAction.OnInitialize(Actor actor, string tag, string key, State state)
@@ -37,10 +37,10 @@ namespace Rara.FSMCharacterController.AI
 
         private void SearchWalkPoint()
         {
-            float randomX = Random.Range(_range.runtimeValue.min, _range.runtimeValue.max);
-            float randomZ = Random.Range(_range.runtimeValue.min, _range.runtimeValue.max);
+            float randomX = Random.Range(_range.value.min, _range.value.max);
+            float randomZ = Random.Range(_range.value.min, _range.value.max);
             _walkPoint.Set(randomX, _transform.position.y, randomZ);
-            if (Physics.Raycast(_walkPoint, -_transform.up, _ground.runtimeValue))
+            if (Physics.Raycast(_walkPoint, -_transform.up, _ground.value))
                 _walkPointSet = true;
         }
     }

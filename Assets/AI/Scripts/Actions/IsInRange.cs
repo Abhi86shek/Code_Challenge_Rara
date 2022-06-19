@@ -8,9 +8,9 @@ namespace Rara.FSMCharacterController.AI
     public class IsInRange : IStateAction
     {
         [FieldRequiresSelf] Transform _aiPlayerTransform;
-        private ScriptableFloat _range;
-        private ScriptableString _paramKey;
-        private ScriptableLayerMask _playerLayer;
+        private ScriptableReadOnlyFloat _range;
+        private ScriptableReadOnlyString _paramKey;
+        private ScriptableReadOnlyLayerMask _playerLayer;
 
         void IStateAction.OnInitialize(Actor actor, string tag, string key, State state)
         {
@@ -22,7 +22,7 @@ namespace Rara.FSMCharacterController.AI
 
         void IStateAction.Execute(Actor actor)
         {
-            actor.SetBool(_paramKey.runtimeValue, Physics.CheckSphere(_aiPlayerTransform.position, _range.runtimeValue, _playerLayer.runtimeValue));
+            actor.SetBool(_paramKey.value, Physics.CheckSphere(_aiPlayerTransform.position, _range.value, _playerLayer.value));
         }
 
     }

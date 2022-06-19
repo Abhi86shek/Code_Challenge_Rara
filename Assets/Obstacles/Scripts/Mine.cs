@@ -5,7 +5,7 @@ namespace Rara.Obstacles
 {
     public class Mine : MonoBehaviour, IExplodable
     {
-        [SerializeField] ScriptableLayerMask m_Player;
+        [SerializeField] ScriptableReadOnlyLayerMask m_Player;
 
         public void Explode()
         {
@@ -14,7 +14,7 @@ namespace Rara.Obstacles
 
         private void OnTriggerEnter(Collider other)
         {
-            if ((1 << other.gameObject.layer) == m_Player.runtimeValue.value)
+            if ((1 << other.gameObject.layer) == m_Player.value.value)
             {
                 other.transform.root.gameObject.SendMessage("OnEnterInExplodable", this, SendMessageOptions.DontRequireReceiver);
                 Explode();

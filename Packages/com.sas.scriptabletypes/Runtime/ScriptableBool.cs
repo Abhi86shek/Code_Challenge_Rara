@@ -7,7 +7,7 @@ namespace SAS.ScriptableTypes
     public class ScriptableBool : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] private bool m_InitialValue = default;
-        [NonSerialized] public bool runtimeValue;
+        [NonSerialized] public bool value;
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
@@ -15,7 +15,7 @@ namespace SAS.ScriptableTypes
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
-            runtimeValue = m_InitialValue;
+            value = m_InitialValue;
         }
     }
 }

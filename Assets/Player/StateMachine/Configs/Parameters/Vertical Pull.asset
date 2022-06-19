@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdfa13d8a15d6c14c9f76959075084a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1edc47267287bd24da248c37b27c8c5f, type: 3}
   m_Name: Vertical Pull
   m_EditorClassIdentifier: 
   m_InitialValue: -10

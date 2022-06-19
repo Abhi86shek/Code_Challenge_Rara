@@ -6,7 +6,7 @@ namespace Rara.FSMCharacterController
 	public class HorizontalMovement : IStateAction
 	{
 		private Player _player;
-		private ScriptableFloat _speed = default;
+		private ScriptableReadOnlyFloat _speed = default;
 
 		void IStateAction.OnInitialize(Actor actor, string tag, string key, State state)
 		{
@@ -16,8 +16,8 @@ namespace Rara.FSMCharacterController
 
         void IStateAction.Execute(Actor actor)
         {
-			_player.movementVector.x = _speed.runtimeValue * _player.movementInput.x;
-			_player.movementVector.z = _speed.runtimeValue * _player.movementInput.z;
+			_player.movementVector.x = _speed.value * _player.movementInput.x;
+			_player.movementVector.z = _speed.value * _player.movementInput.z;
 		}
     }
 }

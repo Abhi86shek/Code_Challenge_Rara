@@ -11,7 +11,7 @@ namespace Rara.FSMCharacterController.AI
     {
         [FieldRequiresChild("Head")] private Transform _transform;
         [FieldRequiresSelf] private AIPlayer _aiPlayer;
-        private ScriptableFloat _turnSmoothSpeed;
+        private ScriptableReadOnlyFloat _turnSmoothSpeed;
 
         void IStateAction.OnInitialize(Actor actor, string tag, string key, State state)
         {
@@ -25,7 +25,7 @@ namespace Rara.FSMCharacterController.AI
                 return;
 
             var targetRotation = Quaternion.LookRotation(_aiPlayer.Target.Transform.position - _transform.position);
-            _transform.rotation = Quaternion.Lerp(_transform.rotation, targetRotation, Time.deltaTime * _turnSmoothSpeed.runtimeValue);
+            _transform.rotation = Quaternion.Lerp(_transform.rotation, targetRotation, Time.deltaTime * _turnSmoothSpeed.value);
         }
     }
 }
