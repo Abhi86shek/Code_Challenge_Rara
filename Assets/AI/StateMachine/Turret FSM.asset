@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
   m_Name: Fire
   m_EditorClassIdentifier: 
-  m_Position: {x: 876.1288, y: 236.51608, z: 0}
+  m_Position: {x: 876.1288, y: 234.77695, z: 0}
   m_Tag: 
   m_StateActions:
   - fullName: Rara.FSMCharacterController.AI.LookAtTargetAction, Assembly-CSharp,
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557f759ffd418e4bab479f7b35953ed, type: 3}
   m_Name: LookAt
   m_EditorClassIdentifier: 
-  m_Position: {x: 876.1288, y: 144.51608, z: 0}
+  m_Position: {x: 876.1288, y: 142.77696, z: 0}
   m_Tag: 
   m_StateActions:
   - fullName: Rara.FSMCharacterController.AI.LookAtTargetAction, Assembly-CSharp,

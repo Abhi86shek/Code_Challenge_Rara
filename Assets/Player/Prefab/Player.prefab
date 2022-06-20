@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 1955699487}
   - component: {fileID: 1683448829}
   - component: {fileID: 4819063221893910038}
+  - component: {fileID: 3319644758615975759}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InputConfig: {fileID: 11400000, guid: b9a712faf584fb34ea4b284606248ad0, type: 2}
   m_targetSpeedReachMultplier: 5
+  m_OnGameOver: {fileID: 11400000, guid: 864e7228fb6694b43a4f5e5387ef45c3, type: 2}
 --- !u!114 &1955699486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +238,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b85e5b90103290b4e84d78c02b56a372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InitializeOnStart: 0
+--- !u!114 &3319644758615975759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5640901729515321829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6b119ccb0eb644ca9bf7c1ac13edc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InitializeOnStart: 0

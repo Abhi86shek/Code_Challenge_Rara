@@ -90,6 +90,7 @@ namespace Rara.LevelEditor
 
         public void TestButtonAction()
         {
+            _content.gameObject.SetActive(false);
             _levelEditButton.interactable = true;
             _playButton.interactable = false;
             m_levelEditingEventTrigger.triggers.Remove(_entry);
@@ -135,7 +136,7 @@ namespace Rara.LevelEditor
         {
             CloseResultScreen();
             PlaceButtonAction();
-            TestButtonAction();
+            Invoke("TestButtonAction", 0.2f);
         }
 
         private void OnFlagCaptured()

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 using Rara.FSMCharacterController;
+using SAS.ScriptableTypes;
 
 namespace Rara.FSMCharacterController.Input
 {
@@ -10,6 +11,7 @@ namespace Rara.FSMCharacterController.Input
     {
         [SerializeField] private InputConfig m_InputConfig;
         [SerializeField] private float m_targetSpeedReachMultplier = 5;
+        [SerializeField] private ScriptableVoidEvent m_OnGameOver;
 
         private float _previousSpeed;
         private Vector2 _inputVector;
@@ -26,6 +28,7 @@ namespace Rara.FSMCharacterController.Input
 
         void OnEnable()
         {
+            m_OnGameOver?.Register(ResetInput);
             var moveInputAction = m_InputConfig.GetInputAction("Move");
             moveInputAction.Enable();
             moveInputAction.started += OnMove;
@@ -42,8 +45,10 @@ namespace Rara.FSMCharacterController.Input
             jumpInputAction.canceled += _jumpCanceled;
         }
 
+
         private void OnDisable()
         {
+            m_OnGameOver?.Unregister(ResetInput);
             var moveInputAction = m_InputConfig.GetInputAction("Move");
             moveInputAction.started -= OnMove;
             moveInputAction.performed -= OnMove;
@@ -78,6 +83,12 @@ namespace Rara.FSMCharacterController.Input
         private void OnMove(InputAction.CallbackContext value)
         {
             _inputVector = value.ReadValue<Vector2>();
+        }
+
+        private void ResetInput()
+        {
+            _inputVector = Vector2.zero;
+            _previousSpeed = 0;
         }
     }
 }

@@ -145,7 +145,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     tag: 
     key: 
-    whenToExecute: 1
+    whenToExecute: 3
   - fullName: Rara.FSMCharacterController.VerticalPull, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     tag: 
