@@ -1,3 +1,4 @@
+using SAS.ScriptableTypes;
 using SAS.StateMachineGraph.Utilities;
 using SAS.Utilities.TagSystem;
 using System.Collections;
@@ -5,6 +6,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.UI;
 
 namespace Rara.LevelEditor
 {
@@ -20,7 +23,13 @@ namespace Rara.LevelEditor
         [SerializeField] LevelItemsConfig m_ItemsConfig;
         [SerializeField] ItemButton m_ItemButtonTemplate;
         [SerializeField] EventTrigger m_levelEditingEventTrigger;
+        [SerializeField] private ScriptableVoidEvent m_OnFlagCoinCollectedEvent;
+        [SerializeField] ScriptableVoidEvent m_OnPlayerCollidedWithExplodableEvent;
         [FieldRequiresChild("Content")] private Transform _content;
+        [FieldRequiresChild("Result", includeInactive = true)] Transform _resultScreen;
+        [FieldRequiresChild("Result", includeInactive = true)] TMP_Text _result;
+        [FieldRequiresChild("Play")] private Button _playButton;
+        [FieldRequiresChild("LevelEdit")] private Button _levelEditButton;
 
         private List<LevelObject> _levelObjects = new List<LevelObject>();
         private Item _selectedItem;
@@ -40,6 +49,16 @@ namespace Rara.LevelEditor
             _entry.eventID = EventTriggerType.PointerDown;
             _entry.callback.AddListener((data) => { PointerDown((PointerEventData)data); });
             m_levelEditingEventTrigger.triggers.Add(_entry);
+
+            m_OnFlagCoinCollectedEvent?.Register(OnFlagCaptured);
+            m_OnPlayerCollidedWithExplodableEvent?.Register(GameOver);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            m_OnFlagCoinCollectedEvent?.Unregister(OnFlagCaptured);
+            m_OnPlayerCollidedWithExplodableEvent?.Unregister(GameOver);
         }
 
         private void SelectItem(Item item)
@@ -71,6 +90,8 @@ namespace Rara.LevelEditor
 
         public void TestButtonAction()
         {
+            _levelEditButton.interactable = true;
+            _playButton.interactable = false;
             m_levelEditingEventTrigger.triggers.Remove(_entry);
             _testMode = true;
             _selectedItem = null;
@@ -87,6 +108,10 @@ namespace Rara.LevelEditor
 
         public void PlaceButtonAction()
         {
+            _content.gameObject.SetActive(true);
+            _levelEditButton.interactable = false;
+            _playButton.interactable = true;
+            CloseResultScreen();
             m_levelEditingEventTrigger.triggers.Add(_entry);
             _testMode = false;
             _selectedItem = null;
@@ -104,6 +129,34 @@ namespace Rara.LevelEditor
                     levelObject.gameObject.SetActive(true);
                 }
             }
+        }
+
+        public void ReplayButtonAction()
+        {
+            CloseResultScreen();
+            PlaceButtonAction();
+            TestButtonAction();
+        }
+
+        private void OnFlagCaptured()
+        {
+            Debug.Log("Captured Flag! You Won.....");
+            _result.text = "Captured Flag! You Won !";
+            _resultScreen.gameObject.SetActive(true);
+            Time.timeScale = 0; //Should handle the Game Pause in a better way.
+        }
+
+        private void GameOver()
+        {
+            _result.text = "Player Died!  Lost The Game !";
+            _resultScreen.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+
+        private void CloseResultScreen()
+        {
+            Time.timeScale = 1;
+            _resultScreen.gameObject.SetActive(false);
         }
     }
 }

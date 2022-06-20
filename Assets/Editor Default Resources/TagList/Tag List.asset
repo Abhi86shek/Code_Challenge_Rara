@@ -16,3 +16,6 @@ MonoBehaviour:
   - Head
   - Weapon
   - Content
+  - Result
+  - LevelEdit
+  - Play
