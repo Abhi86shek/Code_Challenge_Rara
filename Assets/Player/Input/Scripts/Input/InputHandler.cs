@@ -52,6 +52,8 @@ namespace Rara.FSMCharacterController.Input
             var jumpInputAction = m_InputConfig.GetInputAction("Jump");
             jumpInputAction.performed -= _jumpPerformed;
             jumpInputAction.canceled -= _jumpCanceled;
+            _inputVector = Vector2.zero;
+            _previousSpeed = 0;
         }
 
         private void Update() => ProcessMovementInput();
